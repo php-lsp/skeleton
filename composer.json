@@ -8,24 +8,6 @@
         "issues": "https://github.com/php-lsp/skeleton/issues",
         "source": "https://github.com/php-lsp/skeleton"
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../php-lsp/libs/*"
-        },
-        {
-            "type": "path",
-            "url": "../php-lsp/libs/rpc/*"
-        },
-        {
-            "type": "path",
-            "url": "../php-lsp/libs/contracts/*"
-        },
-        {
-            "type": "path",
-            "url": "../php-lsp/libs/rpc/contracts/*"
-        }
-    ],
     "authors": [
         {
             "name": "Kirill Nesmeyanov",

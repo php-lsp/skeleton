@@ -1,0 +1,17 @@
+default:
+  suites:
+    default:
+      paths:
+        - '%paths.base%/tests/Feature'
+      contexts:
+        # Assertions
+        - App\Tests\Context\Assert\ExampleAssertionsContext
+        # - ...
+
+        # Providers
+        - App\Tests\Context\Provider\ExampleProviderContext
+        # - ...
+
+        # Utils
+        - App\Tests\Context\Support\VarDumperContext
+        # - ...

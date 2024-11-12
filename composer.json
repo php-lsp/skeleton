@@ -1,0 +1,93 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "php-lsp/skeleton",
+    "type": "project",
+    "license": "MIT",
+    "description": "The skeleton application for the Language Server Protocol extension",
+    "support": {
+        "issues": "https://github.com/php-lsp/skeleton/issues",
+        "source": "https://github.com/php-lsp/skeleton"
+    },
+    "authors": [
+        {
+            "name": "Kirill Nesmeyanov",
+            "email": "nesk@xakep.ru",
+            "homepage": "https://nesk.me"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "php-lsp/dispatcher": "^1.0",
+        "php-lsp/hydrator-jms": "^1.0",
+        "php-lsp/kernel": "^1.0",
+        "php-lsp/protocol": "^1.0",
+        "php-lsp/router": "^1.0",
+        "php-lsp/rpc": "^1.0",
+        "php-lsp/server-react": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app"
+        }
+    },
+    "require-dev": {
+        "behat/behat": "^3.16",
+        "friendsofphp/php-cs-fixer": "^3.64",
+        "php-lsp/protocol-generator": "^1.0",
+        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpunit/phpunit": "^11.5",
+        "symfony/var-dumper": "^6.4|^7.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests"
+        }
+    },
+    "scripts-aliases": {
+        "linter:check": ["linter", "stan", "analyze", "phpstan"],
+        "phpcs:fix": ["phpcs", "per2", "per", "percs", "codestyle", "cs"],
+        "test:unit": ["phpunit", "unit"],
+        "build:prod": ["build"],
+        "build:run": ["run"]
+    },
+    "scripts-descriptions": {
+        "test": "Runs all types of tests in turn",
+        "test:unit": "Runs unit tests only",
+        "test:feature": "Runs functional tests only",
+        "linter:check": "Runs static code analysis",
+        "linter:baseline": "Generates a baseline for current linter errors",
+        "phpcs:check": "Checks source code for codestyle errors",
+        "phpcs:fix": "Corrects codestyle in source code",
+        "build:prod": "Compiles PHAR assembly of the LSP Server",
+        "build:run": "Runs the compiled PHAR assembly"
+    },
+    "scripts": {
+        "test": ["@test:unit", "@test:feature"],
+        "test:unit": "phpunit --testdox",
+        "test:feature": "behat --format pretty",
+        "linter:check": "phpstan analyse --configuration phpstan.neon",
+        "linter:baseline": "phpstan analyse --configuration phpstan.neon --generate-baseline",
+        "phpcs:check": "php-cs-fixer fix --config=.php-cs-fixer.php --allow-risky=yes --dry-run --verbose --diff",
+        "phpcs:fix": "php-cs-fixer fix --config=.php-cs-fixer.php --allow-risky=yes --verbose --diff",
+        "build:prod": "bin/build",
+        "build:run": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php var/prod/build.phar serve App\\\\Application --port=5007"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev",
+            "dev-main": "1.x-dev"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

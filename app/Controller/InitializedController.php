@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Lsp\Contracts\Server\ConnectionInterface;
+use Lsp\Server\ConnectionInterface;
 use Lsp\Kernel\Attribute\AsController;
 use Lsp\Protocol\Type\InitializeResult;
 use Lsp\Router\Attribute\Route;

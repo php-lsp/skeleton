@@ -14,14 +14,14 @@ use Lsp\Protocol\Type\TextDocumentSyncKind;
 use Lsp\Router\Attribute\Route;
 
 #[AsController, Route('initialize')]
-final class HomeController
+final class InitializeController
 {
     public function __invoke(InitializeParams $request): InitializeResult
     {
         return new InitializeResult(
             capabilities: new ServerCapabilities(
                 positionEncoding: PositionEncodingKind::UTF8,
-                textDocumentSync: TextDocumentSyncKind::None,
+                textDocumentSync: TextDocumentSyncKind::Full,
             ),
             serverInfo: new InitializeResultServerInfo(
                 name: 'example-lsp-server',

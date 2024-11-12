@@ -17,6 +17,7 @@
     ],
     "require": {
         "php": "^8.1",
+        "monolog/monolog": "^3.7",
         "php-lsp/dispatcher": "^1.0",
         "php-lsp/hydrator-jms": "^1.0",
         "php-lsp/kernel": "^1.0",

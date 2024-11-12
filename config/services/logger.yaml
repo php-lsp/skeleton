@@ -1,0 +1,49 @@
+parameters:
+  env(APP_LOGGER_NAME): 'php-lsp'
+  app.logger.name: '%env(APP_LOGGER_NAME)%'
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  app.logger.processor.psr:
+    class: Monolog\Processor\PsrLogMessageProcessor
+
+  app.logger.handler.prod:
+    class: Monolog\Handler\StreamHandler
+    arguments:
+      $stream: '%kernel.logs_dir%/%kernel.environment%.log'
+      $level: !php/enum Monolog\Level::Error
+
+  Psr\Log\LoggerInterface:
+    class: Monolog\Logger
+    arguments:
+      $name: '%app.logger.name%'
+    calls:
+      - [ 'pushHandler', [ '@app.logger.handler.prod' ] ]
+      - [ 'pushProcessor', [ '@app.logger.processor.psr' ] ]
+
+when@dev:
+  services:
+    _defaults:
+      autowire: true
+      autoconfigure: true
+
+    app.logger.handler.dev:
+      class: Monolog\Handler\StreamHandler
+      arguments:
+        $stream: 'php://stderr'
+        $level: !php/enum Monolog\Level::Debug
+
+    Psr\Log\LoggerInterface:
+      class: Monolog\Logger
+      arguments:
+        $name: '%app.logger.name%'
+      calls:
+        - [ 'pushHandler', [ '@app.logger.handler.dev' ] ]
+        - [ 'pushHandler', [ '@app.logger.handler.prod' ] ]
+        - [ 'pushProcessor', [ '@app.logger.processor.psr' ] ]
+
+
+

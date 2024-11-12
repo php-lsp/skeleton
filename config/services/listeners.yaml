@@ -1,0 +1,7 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  App\Listener\:
+    resource: '%kernel.project_dir%/app/Listener'

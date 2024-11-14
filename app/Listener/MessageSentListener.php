@@ -20,7 +20,7 @@ final class MessageSentListener extends MessageLoggerListener
     public function __invoke(MessageSent $event): void
     {
         $this->logger->debug('[{client}] Sent' . $this->messageToTemplate($event->message), [
-            'client' => $event->connection->getClientAddress(),
+            'client' => $event->connection->getAddress(),
             ...$this->messageToArray($event->message),
         ]);
     }

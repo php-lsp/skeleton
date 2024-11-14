@@ -67,7 +67,7 @@ declare(strict_types=1);
 require __DIR__ . '/vendor/autoload.php';
 
 $app = new \App\Application('dev', true);
-$app->run(5007);
+$app->listen('tcp://127.0.0.1:5007');
 ```
 
 ### Build And Run (Using Composer)

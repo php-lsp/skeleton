@@ -1,0 +1,24 @@
+#!/bin/sh
+set -eu
+
+# Install SPC
+mkdir -p var/bin
+if [ ! -x var/bin/spc ]; then
+    wget -O var/bin/spc "https://dl.static-php.dev/static-php-cli/spc-bin/nightly/spc-linux-x86_64"
+    chmod +x var/bin/spc
+fi
+
+cd var
+
+# Download specified dependencies
+./bin/spc download micro --for-extensions=phar,iconv,mbstring,tokenizer --with-php=8.3 --prefer-pre-built
+
+# Quick check
+./bin/spc doctor
+
+./bin/spc switch-php-version 8.3
+
+# Compile PHP with some extensions, compile target is micro
+./bin/spc build phar,iconv,mbstring,tokenizer --build-micro --with-upx-pack
+
+# ./bin/spc micro:combine var/prod/build.phar --output=var/prod/build

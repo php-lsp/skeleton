@@ -18,6 +18,7 @@ final class InitializeController
 {
     public function __invoke(InitializeParams $request): InitializeResult
     {
+        var_dump($request);
         return new InitializeResult(
             capabilities: new ServerCapabilities(
                 positionEncoding: PositionEncodingKind::UTF8,

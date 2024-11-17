@@ -8,7 +8,9 @@ return (new Config())
     ->setParallelConfig(ParallelConfigFactory::detect())
     ->setFinder(
         finder: Finder::create()
-            ->in([__DIR__ . '/app']),
+            ->in([
+                __DIR__ . '/libs',
+            ]),
     )
     ->setRules([
         '@PER-CS2.0' => true,
@@ -188,6 +190,7 @@ return (new Config())
                 ],
                 [
                     'template',
+                    'template-covariant',
                     'template-extends',
                     'extends',
                     'template-implements',

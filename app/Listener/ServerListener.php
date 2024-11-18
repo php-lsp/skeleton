@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Listener;
 
-use Lsp\Server\Event\Message\MessageSent;
+use Lsp\Server\Event\Server\ServerStarted;
 use Symfony\Component\DependencyInjection\Attribute\When;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
@@ -15,13 +15,12 @@ use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
  * @link https://symfony.com/doc/current/event_dispatcher.html#event-dispatcher_event-listener-attributes
  */
 #[When('dev'), AsEventListener]
-final class MessageSentListener extends MessageLoggerListener
+final class ServerListener extends LoggerListener
 {
-    public function __invoke(MessageSent $event): void
+    public function __invoke(ServerStarted $event): void
     {
-        $this->logger->debug('[{client}] Sent' . $this->messageToTemplate($event->message), [
-            'client' => $event->connection->getAddress(),
-            ...$this->messageToArray($event->message),
+        $this->logger->debug('[{address}] Started', [
+            'address' => $event->server->getAddress(),
         ]);
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Listener;
 
-use Lsp\Server\Event\MessageSent;
+use Lsp\Server\Event\Message\MessageSent;
 use Symfony\Component\DependencyInjection\Attribute\When;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 

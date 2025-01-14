@@ -15,20 +15,21 @@ use Lsp\Router\Attribute\Route;
 #[AsController, Route('textDocument/codeLens')]
 final class CodeLensController
 {
-    public function __invoke(CodeLensParams $request): array
+    /**
+     * @return iterable<array-key, CodeLens>
+     */
+    public function __invoke(CodeLensParams $request): iterable
     {
-        return [
-            new CodeLens(
-                range: new Range(
-                    start: new Position(1, 0),
-                    end: new Position(1, 120),
-                ),
-                command: new Command(
-                    title: 'Hello from PHP',
-                    command: 'hello',
-                    arguments: [],
-                ),
+        yield new CodeLens(
+            range: new Range(
+                start: new Position(1, 0),
+                end: new Position(1, 120),
             ),
-        ];
+            command: new Command(
+                title: 'Hello from PHP',
+                command: 'hello',
+                arguments: [],
+            ),
+        );
     }
 }

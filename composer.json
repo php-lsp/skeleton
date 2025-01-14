@@ -18,11 +18,11 @@
     "repositories": [
         {
             "type": "path",
-            "url": "../php-lsp/libs/*"
+            "url": "../php-lsp/libs/bridges/*"
         },
         {
             "type": "path",
-            "url": "../php-lsp/libs/rpc/*"
+            "url": "../php-lsp/libs/components/*"
         },
         {
             "type": "path",
@@ -30,19 +30,17 @@
         },
         {
             "type": "path",
-            "url": "../php-lsp/libs/rpc/contracts/*"
+            "url": "../php-lsp/libs/extensions/*"
         }
     ],
     "require": {
         "php": "^8.1",
         "monolog/monolog": "^3.8",
-        "php-lsp/dispatcher": "^1.0",
-        "php-lsp/hydrator-type-lang": "^1.0",
         "php-lsp/kernel": "^1.0",
         "php-lsp/protocol": "^1.0",
-        "php-lsp/router": "^1.0",
-        "php-lsp/rpc": "^1.0",
-        "php-lsp/server-driver-react": "^1.0"
+        "php-lsp/hydrator-bridge-type-lang": "^1.0",
+        "php-lsp/server-bridge-react": "^1.0",
+        "php-lsp/ext-document-manager": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -105,7 +103,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": {
+            "php": "8.1.999"
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true

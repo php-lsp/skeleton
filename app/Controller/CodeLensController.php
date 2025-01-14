@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Lsp\Extension\DocumentManager\EditorInterface;
 use Lsp\Kernel\Attribute\AsController;
 use Lsp\Protocol\Type\CodeLens;
 use Lsp\Protocol\Type\CodeLensParams;

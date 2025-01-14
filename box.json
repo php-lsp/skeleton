@@ -2,7 +2,7 @@
     "check-requirements": false,
     "dump-autoload": false,
     "stub": "bin/lsp",
-    "output": "var/prod/build.phar",
+    "output": "build/lsp.prod.phar",
     "main": false,
     "compression": "GZ",
     "finder": [

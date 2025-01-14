@@ -14,6 +14,6 @@ final class Application extends LanguageServerKernel
     {
         parent::build($container);
 
-        $container->registerExtension(new DocumentManagerExtension());
+        $container->addCompilerPass(new DocumentManagerExtension());
     }
 }

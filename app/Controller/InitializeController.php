@@ -18,9 +18,10 @@ final class InitializeController
 {
     public function __invoke(InitializeParams $request): InitializeResult
     {
+        dump($request);
         return new InitializeResult(
             capabilities: new ServerCapabilities(
-                textDocumentSync: TextDocumentSyncKind::Full,
+                textDocumentSync: TextDocumentSyncKind::Incremental,
                 codeLensProvider: new CodeLensOptions(
                     resolveProvider: true,
                 ),

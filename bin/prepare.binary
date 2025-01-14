@@ -11,7 +11,7 @@ fi
 cd var
 
 # Download specified dependencies
-./bin/spc download micro --for-extensions=phar,iconv,mbstring,tokenizer --with-php=8.3 --prefer-pre-built
+./bin/spc download micro --for-extensions=phar,iconv,mbstring,tokenizer,filter --with-php=8.3 --prefer-pre-built
 
 # Quick check
 ./bin/spc doctor
@@ -19,6 +19,6 @@ cd var
 ./bin/spc switch-php-version 8.3
 
 # Compile PHP with some extensions, compile target is micro
-./bin/spc build phar,iconv,mbstring,tokenizer --build-micro --with-upx-pack
+./bin/spc build phar,iconv,mbstring,tokenizer,filter --build-micro --with-upx-pack
 
 # ./bin/spc micro:combine var/prod/build.phar --output=var/prod/build

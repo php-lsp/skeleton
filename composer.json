@@ -15,24 +15,6 @@
             "homepage": "https://nesk.me"
         }
     ],
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../php-lsp/libs/bridges/*"
-        },
-        {
-            "type": "path",
-            "url": "../php-lsp/libs/components/*"
-        },
-        {
-            "type": "path",
-            "url": "../php-lsp/libs/contracts/*"
-        },
-        {
-            "type": "path",
-            "url": "../php-lsp/libs/extensions/*"
-        }
-    ],
     "require": {
         "php": "^8.1",
         "monolog/monolog": "^3.8",

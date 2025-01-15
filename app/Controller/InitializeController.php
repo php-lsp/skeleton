@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Lsp\Kernel\Attribute\AsController;
-use Lsp\Protocol\Type\CodeLensOptions;
 use Lsp\Protocol\Type\InitializeParams;
 use Lsp\Protocol\Type\InitializeResult;
 use Lsp\Protocol\Type\ServerCapabilities;
@@ -18,13 +17,9 @@ final class InitializeController
 {
     public function __invoke(InitializeParams $request): InitializeResult
     {
-        dump($request);
         return new InitializeResult(
             capabilities: new ServerCapabilities(
-                textDocumentSync: TextDocumentSyncKind::Incremental,
-                codeLensProvider: new CodeLensOptions(
-                    resolveProvider: true,
-                ),
+                textDocumentSync: TextDocumentSyncKind::Incremental
             ),
             serverInfo: new ServerInfo(
                 name: 'example-lsp-server',

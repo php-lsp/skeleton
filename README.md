@@ -45,6 +45,9 @@ editor or IDE using the PHP language!
 # create an extension application
 composer create-project php-lsp/skeleton
 
+# install dependencies
+composer i
+
 # allow build script to run (required once)
 chmod +x bin/build
 ```

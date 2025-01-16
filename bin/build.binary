@@ -1,5 +1,0 @@
-#!/bin/sh
-set -eu
-
-# build binary
-(cd var && ./bin/spc micro:combine ./prod/build.phar --output=./prod/build)

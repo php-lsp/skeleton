@@ -1,0 +1,29 @@
+#!/bin/sh
+set -eu
+
+# Install SPC
+mkdir -p var/bin
+if [ ! -x var/bin/spc ]; then
+    wget -O var/bin/spc "https://dl.static-php.dev/static-php-cli/spc-bin/nightly/spc-linux-x86_64"
+    chmod +x var/bin/spc
+fi
+
+cd var
+
+# Download sources by extensions command
+./bin/spc download micro \
+    --for-extensions=phar,iconv,mbstring,tokenizer,filter,ffi \
+    --with-php=8.4 \
+    --prefer-pre-built
+
+# Download UPX command
+./bin/spc install-pkg upx
+
+# Quick check
+./bin/spc doctor
+
+# Compile PHP with some extensions, compile target is micro
+./bin/spc build phar,iconv,mbstring,tokenizer,filter,ffi \
+    --build-micro \
+    --with-upx-pack \
+    --with-hardcoded-ini "ffi.enable=true"

@@ -45,14 +45,11 @@ editor or IDE using the PHP language!
 # create an extension application
 composer create-project php-lsp/skeleton
 
-# install dependencies
-composer i
-
 # allow build script to run (required once)
 chmod +x bin/build
 ```
 
-## Running Extension Server
+## Running Server
 
 ### Run From Sources
 
@@ -73,24 +70,41 @@ $app = new \App\Application('dev', true);
 $app->listen('tcp://127.0.0.1:5007');
 ```
 
-### Build And Run (Using Composer)
+### Run PHAR Assembly
 
 ```shell
-# build server assembly
-composer build
-
-# run server assembly
-composer run
+composer build:run:local
 ```
 
-### Build And Run (Using Binaries)
+### Run Binary Assembly
 
 ```shell
-# build server assembly
-./bin/build
+composer build:run
+```
 
-# run server assembly
-php ./var/prod/build.phar serve App\\Application --port=5007
+## Building Server
+
+### Building PHAR Assembly
+
+```shell
+# build assembly
+composer build
+
+# list of assemblies
+ls -la ./var/prod/
+```
+
+### Building Binary Assembly
+
+```shell
+# install dependencies (only needs to be called once)
+composer build:prepare
+
+# build assembly
+composer build
+
+# list of assemblies
+ls -la ./var/prod/
 ```
 
 ## Running Extension Client

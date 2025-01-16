@@ -78,8 +78,10 @@
         "linter:baseline": "Generates a baseline for current linter errors",
         "phpcs:check": "Checks source code for codestyle errors",
         "phpcs:fix": "Corrects codestyle in source code",
-        "build:prod": "Compiles PHAR assembly of the LSP Server",
-        "build:run": "Runs the compiled PHAR assembly"
+        "build:prod": "Compiles PHAR and binary assembly of the LSP Server",
+        "build:run": "Runs the compiled assembly",
+        "build:run:local": "Runs the compiled PHAR (using local interpreter)",
+        "build:prepare": "Prepare local environment for binary compilation"
     },
     "scripts": {
         "test": ["@test:unit", "@test:feature"],
@@ -89,10 +91,18 @@
         "linter:baseline": "phpstan analyse --configuration phpstan.neon --generate-baseline",
         "phpcs:check": "php-cs-fixer fix --config=.php-cs-fixer.php --allow-risky=yes --dry-run --verbose --diff",
         "phpcs:fix": "php-cs-fixer fix --config=.php-cs-fixer.php --allow-risky=yes --verbose --diff",
-        "build:prod": "bin/build",
+        "build:prod": "./bin/build",
+        "build:prepare": [
+            "Composer\\Config::disableProcessTimeout",
+            "./bin/prepare"
+        ],
+        "build:run:local": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php ./var/prod/build.phar serve App\\\\Application --port=5007"
+        ],
         "build:run": [
             "Composer\\Config::disableProcessTimeout",
-            "@php var/prod/build.phar serve App\\\\Application --port=5007"
+            "./var/prod/build serve App\\\\Application --port=5007"
         ]
     },
     "extra": {

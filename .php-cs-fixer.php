@@ -9,7 +9,7 @@ return (new Config())
     ->setFinder(
         finder: Finder::create()
             ->in([
-                __DIR__ . '/libs',
+                __DIR__ . '/app'
             ]),
     )
     ->setRules([

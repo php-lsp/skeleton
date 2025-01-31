@@ -43,7 +43,7 @@ editor or IDE using the PHP language!
 
 ```shell
 # create an extension application
-composer create-project php-lsp/skeleton
+composer create-project php-lsp/skeleton -s dev
 
 # allow build script to run (required once)
 chmod +x bin/build
